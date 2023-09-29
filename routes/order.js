@@ -39,9 +39,9 @@ router.get('/:id', (req, res) => {
   const { id } = req.params;
   const order = orders.find(order => order.id == id);
   if (order) {
-    res.status(200).json(order)
+    res.status(200).json(order);
   } else {
-    res.status(400).json({ success: false, message: "Not found this order!" })
+    res.status(400).json({ success: false, message: "Not found this order!" });
   }
 })
 
@@ -55,7 +55,7 @@ router.post('/', (req, res) => {
     orders.push(order);
     res.status(200).json(order);
   } else {
-    res.status(400).json({ success: false, message: "Missing fields!" })
+    res.status(400).json({ success: false, message: "Missing fields!" });
   }
 })
 
@@ -68,12 +68,12 @@ router.delete('/', (req, res) => {
 // Delete a order by id
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
-  const order = orders.find(order => order.id == id);
-  if (order) {
-    orders = orders.filter(order => order.id != order.id)
-    res.status(200).json(order)
+  const deletedOrder = orders.find(order => order.id == id);
+  if (deletedOrder) {
+    orders = orders.filter(order => order.id != deletedOrder.id);
+    res.status(200).json(deletedOrder);
   } else {
-    res.status(400).json({ success: false, message: "Not found this order!" })
+    res.status(400).json({ success: false, message: "Not found this order!" });
   }
 });
 
@@ -84,14 +84,14 @@ router.patch('/:id', (req, res) => {
   const updatedOrder = orders.find(order => order.id == id);
 
   if(updatedOrder) {
-    if(name) { updatedOrder.name = name }
-    if(coffeeName) { updatedOrder.coffeeName = coffeeName }
-    if(price) { updatedOrder.price = price }
-    if(size) { updatedOrder.size = size }
+    if(name) { updatedOrder.name = name; }
+    if(coffeeName) { updatedOrder.coffeeName = coffeeName; }
+    if(price) { updatedOrder.price = price; }
+    if(size) { updatedOrder.size = size; }
   
-    res.status(200).json(updatedOrder)
+    res.status(200).json(updatedOrder);
   } else {
-    res.status(400).json({ success: false, message: "Not found this order!" })
+    res.status(400).json({ success: false, message: "Not found this order!" });
   }
 })
 
